@@ -14,7 +14,7 @@
         <a class="forgot-pass">Forgot password?</a>
       </div>
       <div class="field button-field">
-        <button @click="switchToLogin()" v-on:click="createUser()">Register</button>
+        <button     v-on:click="createUser()">Register</button>
       </div>
       <div class="field button-field">
         <button v-on:click="loginUser()">Login</button>
