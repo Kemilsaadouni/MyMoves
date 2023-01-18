@@ -14,7 +14,7 @@
         <a class="forgot-pass">Forgot password?</a>
       </div>
       <div class="field button-field">
-        <button v-on:click="loginUser()">Login</button>
+        <button @click="switchToHome()" v-on:click="loginUser()">Login</button>
       </div>
       <div class="form-link sign-up">
         <span>Don't have an account?</span> <a @click="switchToRegister()">Register now </a>
@@ -47,6 +47,9 @@ export default {
     },
     switchToRegister: function(){
       this.$router.push('/register')
+    },
+    switchToHome: function (){
+      this.$router.push('/')
     }
   }
 }
