@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h1 class="header">Register</h1>
+    <h1 class="header">Login</h1>
     <form action="#">
       <div class="field input-field">
         <input class="email" type="email" required v-model="mailtext" >
@@ -14,21 +14,20 @@
         <a class="forgot-pass">Forgot password?</a>
       </div>
       <div class="field button-field">
-        <button @click="switchToLogin()" v-on:click="createUser()">Register</button>
-      </div>
-      <div class="field button-field">
         <button v-on:click="loginUser()">Login</button>
       </div>
       <div class="form-link sign-up">
-        <span>Have an account?</span> <a @click="switchToLogin()">Login now</a>
+        <span>Don't have an account?</span> <a @click="switchToRegister()">Register now </a>
       </div>
     </form>
   </div>
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
-  name: "Register.vue",
+  name: "Login.vue",
   data(){
     return{
       mailtext : '',
@@ -36,20 +35,19 @@ export default {
     }
   },
   methods: {
-    async createUser(){
-      console.log(this.mailtext)
-      console.log(this.passwordtext)
-
-      let data = {
-        "mail": this.mailtext,
+    async loginUser(){
+      let data ={
+        "email": this.mailtext,
         "password": this.passwordtext
       }
       const axios = require('axios')
-      await axios.post('http://localhost:3000/users', data)
+      const response = (await axios.post('http://localhost:3000/login', data))
+      console.log(response.data)
+      window.localStorage.setItem('token', response.data.token)
     },
-    switchToLogin: function(){
-      this.$router.push({path: '/login'})
-    },
+    switchToRegister: function(){
+      this.$router.push('/register')
+    }
   }
 }
 </script>

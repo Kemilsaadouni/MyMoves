@@ -4,6 +4,7 @@ const config = require('./database');
 const bodyParser = require('body-parser')
 const cors = require('cors');
 const users = require('./routes/users.js')
+const movies = require('    ')
 
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }))

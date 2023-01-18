@@ -1,5 +1,5 @@
 <template>
-  <Register></Register>
+  <router-view/>
 </template>
 
 <script>

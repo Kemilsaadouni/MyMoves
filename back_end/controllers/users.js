@@ -16,7 +16,7 @@ module.exports = {
                     message: "Database connection error"
                 })
             }
-            return res.status(200).json({
+            return res.status(201).json({
                 success: 1,
                 data: results
             })
@@ -81,7 +81,7 @@ module.exports = {
                 console.log(err);
             }
             if(!results){
-                return res.json({
+                return res.status(403).json({
                     success: 0,
                     data: 'Invalid email or password'
                 });
@@ -92,13 +92,13 @@ module.exports = {
                 const jsontoken = sign({ result: results}, process.env.KEY, {
                     expiresIn: "1h"
                 });
-                return res.json({
+                return res.status(200).json({
                     success: 1,
                     message: "login successful",
                     token: jsontoken,
                 });
             }else{
-                return res.json({
+                return res.status(403).json({
                     success: 0,
                     data: "Invalid email or password"
                 })
